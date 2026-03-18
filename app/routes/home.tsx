@@ -7,16 +7,18 @@ import { UserSchema } from "~/schema/user";
 export function meta(_: Route.MetaArgs) {
   return [
     { title: "Web Starterkit" },
-    { name: "description", content: "Production-grade monorepo starter kit" },
+    { name: "description", content: "Production-grade web starter kit" },
   ];
 }
 
-export function loader(_: Route.LoaderArgs): { apiStatus: string } {
-  return { apiStatus: "ok" };
+export async function clientLoader(): Promise<{ apiStatus: string }> {
+  const res = await fetch(`${window.location.origin}/api/health`);
+  const json: { status: string } = await res.json();
+  return { apiStatus: json.status };
 }
 
 export default function Home() {
-  const { apiStatus } = useLoaderData<typeof loader>();
+  const { apiStatus } = useLoaderData<typeof clientLoader>();
 
   const exampleUser = UserSchema.safeParse({
     id: "00000000-0000-0000-0000-000000000000",
