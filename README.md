@@ -44,7 +44,9 @@ app/
 ├── components/
 │   └── ui/               shadcn/ui components (Button, Card, …)
 └── routes/
-    └── home.tsx          Example route: health check + schema demo
+    ├── api/
+    │   └── health.ts     Health check endpoint (GET /api/health)
+    └── home.tsx          Home page — fetches /api/health, renders schema demo
 ```
 
 ## Routing
