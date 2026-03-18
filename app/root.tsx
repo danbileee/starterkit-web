@@ -1,4 +1,3 @@
-import "./instrument";
 import {
   isRouteErrorResponse,
   Links,
